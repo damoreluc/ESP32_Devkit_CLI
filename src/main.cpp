@@ -60,7 +60,7 @@ void setup()
     cmdSetSpeed = cli.addSingleArgCmd("setSpeed", cmdSetSpeedCallback);
     cmdSetSpeed.setDescription(" Set speed in steps/s");
 
-    cmdSetAcceleration = cli.addSingleArgCmd("setSpeed", cmdSetAccelerationCallback);
+    cmdSetAcceleration = cli.addSingleArgCmd("setAcceleration", cmdSetAccelerationCallback);
     cmdSetAcceleration.setDescription(" Set acceleration in steps/s^2");
 
     cmdHelp = cli.addCommand("help,?", cmdHelpCallback);
@@ -97,25 +97,25 @@ void loop()
         }
     }
 
-    if (cli.available())
-    {
-        Command c = cli.getCmd();
+    // if (cli.available())
+    // {
+    //     Command c = cli.getCmd();
 
-        int argNum = c.countArgs();
+    //     int argNum = c.countArgs();
 
-        Serial.print("> ");
-        Serial.print(c.getName());
-        Serial.print(' ');
+    //     Serial.print("> ");
+    //     Serial.print(c.getName());
+    //     Serial.print(' ');
 
-        for (int i = 0; i < argNum; ++i)
-        {
-            Argument arg = c.getArgument(i);
-            // if(arg.isSet()) {
-            Serial.print(arg.toString());
-            Serial.print(' ');
-            // }
-        }
+    //     for (int i = 0; i < argNum; ++i)
+    //     {
+    //         Argument arg = c.getArgument(i);
+    //         // if(arg.isSet()) {
+    //         Serial.print(arg.toString());
+    //         Serial.print(' ');
+    //         // }
+    //     }
 
-        Serial.println();
-    }
+    //     Serial.println();
+    // }
 }
