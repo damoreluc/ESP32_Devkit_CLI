@@ -15,7 +15,10 @@
 #include <Arduino.h>
 #include <SimpleCLI.h>
 #include <Commands/cmdMove.h>
+#include <Commands/cmdMoveTo.h>
 #include <Commands/cmdSetMicrostepping.h>
+#include <Commands/cmdSetSpeed.h>
+#include <Commands/cmdSetAcceleration.h>
 #include <Commands/help.h>
 #include <Commands/Errors.h>
 
@@ -24,7 +27,10 @@ SimpleCLI cli;
 
 // Commands
 extern Command cmdMove;
+extern Command cmdMoveTo;
 extern Command cmdSetMicrostepping;
+extern Command cmdSetSpeed;
+extern Command cmdSetAcceleration;
 extern Command cmdHelp;
 Command cmdPing;
 Command cmdMycommand;
@@ -34,10 +40,6 @@ Command cmdLs;
 Command cmdBoundless;
 Command cmdSingle;
 
-
-// // callback function for move command
-// void cmdMoveCallback(cmd *commandPointer);
-
 void setup()
 {
     Serial.begin(115200);
@@ -45,14 +47,24 @@ void setup()
 
     cli.setOnError(errorCallback);
 
-    cmdMove = cli.addCmd("move", cmdMoveCallback);
-    cmdMove.addArg("f", "100");
-    cmdMove.addArg("b", "100");
-    cmdMove.setDescription(" Move stepper f-orward or b-ackward n steps");
+    //cmdMove = cli.addCmd("move", cmdMoveCallback);
+    cmdMove = cli.addSingleArgCmd("move", cmdMoveCallback);
+    //cmdMove.addArg("f", "100");
+    //cmdMove.addArg("b", "100");
+    cmdMove.setDescription(" Move stepper n steps forward or backward from current position");
+
+    cmdMoveTo = cli.addSingleArgCmd("moveTo", cmdMoveToCallback);   
+    cmdMoveTo.setDescription(" Move stepper to absolute position");
 
     cmdSetMicrostepping = cli.addSingleArgCmd("setMicrostepping", cmdSetMicrosteppingCallback);
-    //cmdSetMicrostepping.addPosArg("microstep", "1");
     cmdSetMicrostepping.setDescription(" Set microstepping [1, 2, 4, 8, 16, 32]");
+
+    cmdSetSpeed = cli.addSingleArgCmd("setSpeed", cmdSetSpeedCallback);
+    cmdSetSpeed.setDescription(" Set speed in steps/s");
+
+    cmdSetAcceleration = cli.addSingleArgCmd("setSpeed", cmdSetAccelerationCallback);
+    cmdSetAcceleration.setDescription(" Set acceleration in steps/s^2");
+
 
     cmdPing = cli.addCmd("ping");
     cmdPing.addArg("n", "10");
