@@ -7,17 +7,19 @@ Command cmdSetSpeed;
 void cmdSetSpeedCallback(cmd *commandPointer) {
     Command c(commandPointer); // Create wrapper class instance for the pointer
     String sSpeed;
-    uint32_t iSpeed;
 
     // Get first (and only) Argument
     Argument arg = c.getArgument(0);
 
     // Get value of argument
     sSpeed = arg.getValue();
-    iSpeed = abs(sSpeed.toInt());
+    speed = abs(sSpeed.toInt());
+
+    // set speed on driver
+    setSpeedValue(speed);
 
     Serial.print("Speed: ");
-    Serial.print(iSpeed);
+    Serial.print(speed);
     Serial.println(" step/s");
 
     Serial.print("# "); 

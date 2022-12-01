@@ -8,15 +8,19 @@ void cmdMoveCallback(cmd *commandPointer)
 {
     Command c(commandPointer); // Create wrapper class instance for the pointer
     String sStep;
-    int32_t iSteps;
 
     // Get first (and only) Argument
     Argument arg = c.getArgument(0);
 
     // Get value of argument
     sStep = arg.getValue();
-    iSteps = sStep.toInt();
+    position = sStep.toInt();
+
+    // do relative move
+    moverel(position);
 
     Serial.print("Move relative: ");
-    Serial.println(iSteps);
+    Serial.println(position);
+
+    Serial.print("# "); 
 }

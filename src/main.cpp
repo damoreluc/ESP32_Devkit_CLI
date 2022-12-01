@@ -22,6 +22,10 @@
 #include <Commands/help.h>
 #include <Commands/Errors.h>
 
+#include <FastAccelStepper.h>
+#include <Stepper/stepper_init.h>
+
+
 // Create CLI Object
 SimpleCLI cli;
 
@@ -32,6 +36,10 @@ extern Command cmdSetMicrostepping;
 extern Command cmdSetSpeed;
 extern Command cmdSetAcceleration;
 extern Command cmdHelp;
+
+// // stepper driver
+extern FastAccelStepperEngine engine;
+extern FastAccelStepper *stepper;
 
 void setup()
 {
@@ -57,6 +65,9 @@ void setup()
 
     cmdHelp = cli.addCommand("help,?", cmdHelpCallback);
     cmdHelp.setDescription(" Get help!");
+
+    // inizializzazione driver
+    stepperInit();
 
     Serial.println("Started!");
 

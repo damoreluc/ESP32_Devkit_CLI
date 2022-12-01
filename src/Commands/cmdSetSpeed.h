@@ -3,6 +3,9 @@
 
 #include <Arduino.h>
 #include <SimpleCLI.h>
+#include <Stepper/stepper_define.h>
+#include <Stepper/stepper_data.h>
+#include <Stepper/speed.h>
 
 // Commands
 extern Command cmdSetSpeed;
