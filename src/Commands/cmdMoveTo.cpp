@@ -1,10 +1,10 @@
 #include <Commands/cmdMove.h>
 
 // Commands
-Command cmdMove;
+Command cmdMoveTo;
 
-// callback function for move command
-void cmdMoveCallback(cmd *commandPointer)
+// callback function for moveTo command
+void cmdMoveToCallback(cmd *commandPointer)
 {
     Command c(commandPointer); // Create wrapper class instance for the pointer
     String sStep;
@@ -17,6 +17,6 @@ void cmdMoveCallback(cmd *commandPointer)
     sStep = arg.getValue();
     iSteps = sStep.toInt();
 
-    Serial.print("Move relative: ");
+    Serial.print("Move to absolute position: ");
     Serial.println(iSteps);
 }
