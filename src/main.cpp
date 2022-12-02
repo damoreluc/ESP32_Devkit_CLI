@@ -19,6 +19,8 @@
 #include <Commands/cmdSetMicrostepping.h>
 #include <Commands/cmdSetSpeed.h>
 #include <Commands/cmdSetAcceleration.h>
+#include <Commands/cmdStart.h>
+#include <Commands/cmdStop.h>
 #include <Commands/help.h>
 #include <Commands/Errors.h>
 
@@ -35,6 +37,8 @@ extern Command cmdMoveTo;
 extern Command cmdSetMicrostepping;
 extern Command cmdSetSpeed;
 extern Command cmdSetAcceleration;
+extern Command cmdStart;
+extern Command cmdStop;
 extern Command cmdHelp;
 
 // // stepper driver
@@ -47,6 +51,10 @@ void setup()
     Serial.println("Interactive stepper driver");
 
     cli.setOnError(errorCallback);
+
+    cmdStart = cli.addCmd("start", cmdStartCallback);
+
+    cmdStop = cli.addCmd("stop", cmdStopCallback);
 
     cmdMove = cli.addSingleArgCmd("move", cmdMoveCallback);
     cmdMove.setDescription(" Move stepper n steps forward or backward from current position");
