@@ -18,11 +18,28 @@ void cmdSetMicrosteppingCallback(cmd *commandPointer)
     sUSteps = arg.getValue();
     mu = abs(sUSteps.toInt());
 
+    // is mu value legit?
+    uint16_t muValues[] = {1, 2, 4, 8, 16, 32};
+    bool inSet = false;
+    for (uint16_t i = 0; i < (sizeof(muValues) / sizeof(uint16_t) ); i++)
+    {
+        inSet |= (mu == muValues[i]);
+    }
+
+    if (!inSet)
+    {
+        mu = 1;
+        Serial.print("Microstepping clipped to: ");
+        Serial.println(mu);
+    }
+    else
+    {
+        Serial.print("Microstepping: ");
+        Serial.println(mu);
+    }
+
     // set microstepping parameter on driver
     setMicrosteppingValue(mu);
 
-    Serial.print("Microstepping: ");
-    Serial.println(mu);
-
-    Serial.print("# ");
+    prompt();
 }

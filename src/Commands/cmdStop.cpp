@@ -7,9 +7,10 @@ Command cmdStop;
 void cmdStopCallback(cmd *commandPointer) {
 
     // set speed on driver
+    driver_enabled = false;
     stepperStop();
 
     Serial.println("Stepper driver is OFF");
 
-    Serial.print("# "); 
+    prompt(); 
 }

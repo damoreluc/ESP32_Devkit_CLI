@@ -15,6 +15,10 @@ extern uint16_t mu;
 
 void stepperInit()
 {
+   pinMode(mode0, OUTPUT);
+   pinMode(mode1, OUTPUT);
+   pinMode(mode2, OUTPUT);
+   
    engine.init();
    stepper = engine.stepperConnectToPin(stepPinStepper);
 

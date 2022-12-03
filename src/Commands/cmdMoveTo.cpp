@@ -22,5 +22,5 @@ void cmdMoveToCallback(cmd *commandPointer)
     Serial.print("Move to absolute position: ");
     Serial.println(position);
 
-    Serial.print("# ");     
+    prompt();    
 }

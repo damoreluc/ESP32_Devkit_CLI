@@ -22,5 +22,5 @@ void cmdMoveCallback(cmd *commandPointer)
     Serial.print("Move relative: ");
     Serial.println(position);
 
-    Serial.print("# "); 
+    prompt();
 }

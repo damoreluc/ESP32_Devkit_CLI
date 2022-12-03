@@ -9,6 +9,9 @@
 FastAccelStepperEngine engine = FastAccelStepperEngine();
 FastAccelStepper *stepper = NULL;
 
+// driver enable
+bool driver_enabled = false;
+
 // microstepping
 uint16_t mu = 1;
 

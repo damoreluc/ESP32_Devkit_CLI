@@ -16,11 +16,11 @@ void cmdSetAccelerationCallback(cmd *commandPointer) {
     acceleration = abs(sAccel.toInt());
 
     // set acceleration on driver
-    setAccelerationValue(acceleration);
+    setAccelerationValue(acceleration * mu);
 
     Serial.print("Acceleration: ");
     Serial.print(acceleration);
     Serial.println(" step/s^2");
 
-    Serial.print("# "); 
+    prompt();  
 }

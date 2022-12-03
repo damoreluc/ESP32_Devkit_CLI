@@ -4,7 +4,8 @@
 Command cmdSetSpeed;
 
 // callback function for setSpeed command
-void cmdSetSpeedCallback(cmd *commandPointer) {
+void cmdSetSpeedCallback(cmd *commandPointer)
+{
     Command c(commandPointer); // Create wrapper class instance for the pointer
     String sSpeed;
 
@@ -15,12 +16,22 @@ void cmdSetSpeedCallback(cmd *commandPointer) {
     sSpeed = arg.getValue();
     speed = abs(sSpeed.toInt());
 
+    if (speed > 5000)
+    {
+        speed = 5000;
+        Serial.print(" Speed limited to ");
+        Serial.print(speed);
+        Serial.println(" step/s");
+    }
+    else
+    {
+        Serial.print("Speed: ");
+        Serial.print(speed);
+        Serial.println(" step/s");
+    }
+
     // set speed on driver
-    setSpeedValue(speed);
+    setSpeedValue(speed * mu);
 
-    Serial.print("Speed: ");
-    Serial.print(speed);
-    Serial.println(" step/s");
-
-    Serial.print("# "); 
+    prompt();
 }

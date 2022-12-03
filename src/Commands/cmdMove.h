@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <SimpleCLI.h>
+#include <Commands/prompt.h>
 #include <Stepper/stepper_define.h>
 #include <Stepper/stepper_data.h>
 #include <Stepper/moverel.h>

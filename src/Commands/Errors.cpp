@@ -14,5 +14,5 @@ void errorCallback(cmd_error* e) {
         Serial.println("\"?");
     }
 
-    Serial.print("# ");
+    prompt();
 }

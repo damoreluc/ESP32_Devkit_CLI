@@ -23,6 +23,7 @@
 #include <Commands/cmdStop.h>
 #include <Commands/help.h>
 #include <Commands/Errors.h>
+#include <Commands/prompt.h>
 
 #include <FastAccelStepper.h>
 #include <Stepper/stepper_init.h>
@@ -53,9 +54,11 @@ void setup()
     cli.setOnError(errorCallback);
 
     cmdStart = cli.addCmd("start", cmdStartCallback);
+    cmdStart.setDescription(" Enable stepper driver");
 
     cmdStop = cli.addCmd("stop", cmdStopCallback);
-
+    cmdStop.setDescription(" Disable stepper driver");
+    
     cmdMove = cli.addSingleArgCmd("move", cmdMoveCallback);
     cmdMove.setDescription(" Move stepper n steps forward or backward from current position");
 
@@ -79,7 +82,7 @@ void setup()
 
     Serial.println("Started!");
 
-    Serial.print("# "); //
+    prompt();
 }
 
 String input = ""; //

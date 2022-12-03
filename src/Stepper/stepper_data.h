@@ -9,6 +9,9 @@
 extern FastAccelStepperEngine engine;
 extern FastAccelStepper *stepper;
 
+// driver enable
+extern bool driver_enabled;
+
 // microstepping
 extern uint16_t mu;
 
@@ -20,6 +23,5 @@ extern int32_t speed;
 
 // acceleration
 extern uint32_t acceleration;
-
 
 #endif

@@ -9,6 +9,6 @@ extern SimpleCLI cli;
 void cmdHelpCallback(cmd *commandPointer)
 {
     Serial.println("Help:");
-    Serial.println(cli.toString());
-    Serial.print("# ");
+    Serial.print(cli.toString());
+    prompt();
 }

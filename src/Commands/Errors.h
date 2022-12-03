@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <SimpleCLI.h>
+#include <Commands/prompt.h>
 
 // Commands
 extern Command cmdMove;

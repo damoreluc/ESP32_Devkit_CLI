@@ -7,9 +7,10 @@ Command cmdStart;
 void cmdStartCallback(cmd *commandPointer) {
 
     // set speed on driver
+    driver_enabled = true;
     stepperStart();
 
     Serial.println("Stepper driver is ON");
 
-    Serial.print("# "); 
+    prompt();
 }
