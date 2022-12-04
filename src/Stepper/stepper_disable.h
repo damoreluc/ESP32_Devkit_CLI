@@ -1,11 +1,11 @@
-#ifndef _SPEED_H
-#define _SPEED_H
+#ifndef _STEPPER_DISABLE_H
+#define _STEPPER_DISABLE_H
 
 #include <Arduino.h>
 #include <FastAccelStepper.h>
 #include <Stepper/stepper_define.h>
 #include <Stepper/stepper_data.h>
 
-void setSpeedValue(uint32_t uspeed);
+void stepperDisable();
 
 #endif

@@ -19,9 +19,9 @@ uint16_t mu = 1;
 int32_t position = 0;
 
 // speed
-int32_t speed = 100;
+uint32_t speed = 100;
 
 // acceleration
-uint32_t acceleration = 50;
+uint32_t acceleration = 100;
 
 #endif

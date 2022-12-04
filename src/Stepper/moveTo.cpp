@@ -1,7 +1,7 @@
 #include <Stepper/moveTo.h>
 
-void moveTo(uint32_t position) {
+void moveTo(int32_t iposition) {
 //    Serial.print("Move to absolute position: ");
-//    Serial.println(position);
-    stepper->moveTo(position);
+//    Serial.println(iposition);
+    stepper->moveTo(iposition);
 }

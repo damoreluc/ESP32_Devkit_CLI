@@ -6,6 +6,6 @@
 #include <Stepper/stepper_define.h>
 #include <Stepper/stepper_data.h>
 
-void moveTo(uint32_t position);
+void moveTo(int32_t iposition);
 
 #endif

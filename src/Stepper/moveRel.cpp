@@ -1,5 +1,5 @@
 #include <Stepper/moveRel.h>
 
-void moverel(uint32_t position) {
-    stepper->move(position);
+void moverel(int32_t iposition) {
+    stepper->move(iposition);
 }

@@ -19,7 +19,7 @@ extern uint16_t mu;
 extern int32_t position;
 
 // speed
-extern int32_t speed;
+extern uint32_t speed;
 
 // acceleration
 extern uint32_t acceleration;

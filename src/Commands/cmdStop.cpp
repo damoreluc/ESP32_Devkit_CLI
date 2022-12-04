@@ -6,11 +6,8 @@ Command cmdStop;
 // callback function for stop command
 void cmdStopCallback(cmd *commandPointer) {
 
-    // set speed on driver
-    driver_enabled = false;
+    // decelerate and stop the stepper
     stepperStop();
-
-    Serial.println("Stepper driver is OFF");
 
     prompt(); 
 }

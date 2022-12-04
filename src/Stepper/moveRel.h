@@ -6,6 +6,6 @@
 #include <Stepper/stepper_define.h>
 #include <Stepper/stepper_data.h>
 
-void moverel(uint32_t position);
+void moverel(int32_t iposition);
 
 #endif

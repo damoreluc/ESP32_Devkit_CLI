@@ -1,5 +1,5 @@
 #include <Stepper/acceleration.h>
 
-void setAccelerationValue(uint32_t acceleration) {
-    stepper->setAcceleration(mu * acceleration);
+void setAccelerationValue(uint32_t uacceleration) {
+    stepper->setAcceleration(uacceleration);
 }

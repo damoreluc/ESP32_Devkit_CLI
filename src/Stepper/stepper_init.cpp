@@ -10,8 +10,13 @@
 // stepper driver
 extern FastAccelStepperEngine engine;
 extern FastAccelStepper *stepper;
+
 // microstepping
 extern uint16_t mu;
+// speed
+extern uint32_t speed;
+// acceleration
+extern uint32_t acceleration;
 
 void stepperInit()
 {
@@ -21,12 +26,15 @@ void stepperInit()
    
    engine.init();
    stepper = engine.stepperConnectToPin(stepPinStepper);
-
+   delay(200);
+   
    if (stepper)
    {
       stepper->setDirectionPin(dirPinStepper);
       stepper->setEnablePin(enablePinStepper);
       stepper->setAutoEnable(false);
+      setSpeedValue(speed);
+      setAccelerationValue(acceleration);
    }
    else
    {

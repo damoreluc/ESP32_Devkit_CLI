@@ -14,35 +14,16 @@
 // Include Library
 #include <Arduino.h>
 #include <SimpleCLI.h>
-#include <Commands/cmdMove.h>
-#include <Commands/cmdMoveTo.h>
-#include <Commands/cmdSetMicrostepping.h>
-#include <Commands/cmdSetSpeed.h>
-#include <Commands/cmdSetAcceleration.h>
-#include <Commands/cmdStart.h>
-#include <Commands/cmdStop.h>
-#include <Commands/help.h>
-#include <Commands/Errors.h>
-#include <Commands/prompt.h>
+#include <Commands/createCommands.h>
 
 #include <FastAccelStepper.h>
 #include <Stepper/stepper_init.h>
 
-
 // Create CLI Object
 SimpleCLI cli;
 
-// Commands
-extern Command cmdMove;
-extern Command cmdMoveTo;
-extern Command cmdSetMicrostepping;
-extern Command cmdSetSpeed;
-extern Command cmdSetAcceleration;
-extern Command cmdStart;
-extern Command cmdStop;
-extern Command cmdHelp;
 
-// // stepper driver
+// stepper driver
 extern FastAccelStepperEngine engine;
 extern FastAccelStepper *stepper;
 
@@ -50,32 +31,8 @@ void setup()
 {
     Serial.begin(115200);
     Serial.println("Interactive stepper driver");
-
-    cli.setOnError(errorCallback);
-
-    cmdStart = cli.addCmd("start", cmdStartCallback);
-    cmdStart.setDescription(" Enable stepper driver");
-
-    cmdStop = cli.addCmd("stop", cmdStopCallback);
-    cmdStop.setDescription(" Disable stepper driver");
     
-    cmdMove = cli.addSingleArgCmd("move", cmdMoveCallback);
-    cmdMove.setDescription(" Move stepper n steps forward or backward from current position");
-
-    cmdMoveTo = cli.addSingleArgCmd("moveTo", cmdMoveToCallback);
-    cmdMoveTo.setDescription(" Move stepper to absolute position");
-
-    cmdSetMicrostepping = cli.addSingleArgCmd("setMicrostepping", cmdSetMicrosteppingCallback);
-    cmdSetMicrostepping.setDescription(" Set microstepping [1, 2, 4, 8, 16, 32]");
-
-    cmdSetSpeed = cli.addSingleArgCmd("setSpeed", cmdSetSpeedCallback);
-    cmdSetSpeed.setDescription(" Set speed in steps/s");
-
-    cmdSetAcceleration = cli.addSingleArgCmd("setAcceleration", cmdSetAccelerationCallback);
-    cmdSetAcceleration.setDescription(" Set acceleration in steps/s^2");
-
-    cmdHelp = cli.addCommand("help,?", cmdHelpCallback);
-    cmdHelp.setDescription(" Get help!");
+    createCommands(cli);
 
     // inizializzazione driver
     stepperInit();
@@ -96,15 +53,14 @@ void loop()
         Serial.print(ch);        //
         input += ch;
 
-        // if (input.length() > 0) {
         if (input.length() > 0 && ch == '\n')
-        { //
+        { 
             // Serial.print("# ");
             // Serial.println(input);
 
             cli.parse(input);
 
-            input = ""; //
+            input = ""; 
         }
     }
 
