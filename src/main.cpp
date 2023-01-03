@@ -37,7 +37,7 @@ void setup()
     // inizializzazione driver
     stepperInit();
 
-    Serial.println("Started!");
+    Serial.println("Driver started!");
 
     prompt();
 }
@@ -48,41 +48,28 @@ void loop()
 {
     if (Serial.available())
     {
-        // String input = Serial.readStringUntil('\n');
         char ch = Serial.read(); //
-        Serial.print(ch);        //
-        input += ch;
+        // manage backspace
+        if (ch == '\b')
+        {
+            if (input.length() > 0)
+            {
+                input = input.substring(0, (input.length() - 1));
+                Serial.print('\b'); Serial.print(' '); Serial.print('\b');
+            }
+        }
+        else // insert character into buffer string
+        {
+            Serial.print(ch);
+            input += ch;
+        }
 
         if (input.length() > 0 && ch == '\n')
-        { 
-            // Serial.print("# ");
-            // Serial.println(input);
-
+        {
             cli.parse(input);
 
-            input = ""; 
+            input = "";
         }
     }
 
-    // if (cli.available())
-    // {
-    //     Command c = cli.getCmd();
-
-    //     int argNum = c.countArgs();
-
-    //     Serial.print("> ");
-    //     Serial.print(c.getName());
-    //     Serial.print(' ');
-
-    //     for (int i = 0; i < argNum; ++i)
-    //     {
-    //         Argument arg = c.getArgument(i);
-    //         // if(arg.isSet()) {
-    //         Serial.print(arg.toString());
-    //         Serial.print(' ');
-    //         // }
-    //     }
-
-    //     Serial.println();
-    // }
 }
